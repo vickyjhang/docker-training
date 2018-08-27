@@ -4,7 +4,7 @@
 > docker run hello-world
 
 檢示目前 container
-1.docker container ls -a
+- 1.docker container ls -a
 2.docker ps -a
 
 docker run busybox echo hi there
