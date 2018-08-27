@@ -1,11 +1,13 @@
 # docker-training
 
 下載 image
-> docker run hello-world
+```
+docker run hello-world
+```
 
 檢示目前 container
 - 1.docker container ls -a
-# 2.docker ps -a
+2.docker ps -a
 
 docker run busybox echo hi there
 
