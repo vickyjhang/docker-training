@@ -1,7 +1,7 @@
 # docker-training
 
 下載 image
-docker run hello-world
+> docker run hello-world
 
 檢示目前 container
 1.docker container ls -a
