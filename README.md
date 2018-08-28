@@ -68,9 +68,9 @@ exec 可執行 container 裡的程式
 ```
 > docker exec -it 7dc3182fa315 redis-cli
 > set vicky 5
--> 5
+5
 > get vicky
--> "5"
+"5"
 ```
 
 可以看到 container 裡的資料夾，但不能進去
