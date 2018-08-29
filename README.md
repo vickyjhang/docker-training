@@ -133,6 +133,7 @@ CMD ["redis-server"]
 ```
 
 執行如下
+
 Sending build context to Docker daemon  2.048kB
 
 Step 1/3 : FROM alpine
@@ -164,16 +165,12 @@ Successfully tagged v2-redis:latest
 > get abc
 ```
 
-```
-docker build -t shephengrider/redis:latest .
-```
-
 node.js 文檔 http://nodejs.cn/api/
 
 建立第一個 node.js 專案結合 docker
 ```
-mkdir simpleweb
-cd simpleweb
+> mkdir simpleweb
+> cd simpleweb
 ```
 
 建立 package.json，內容如下
@@ -218,10 +215,11 @@ CMD ["npm", "start"]
 
 打包 image
 ```
-docker build .
+> docker build .
 ```
 
 結果如下
+
 Sending build context to Docker daemon  17.41kB
 
 Step 1/3 : FROM alpine
