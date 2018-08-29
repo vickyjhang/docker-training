@@ -106,7 +106,7 @@ sh 的退出無法使用 control c，需改成 control d
 > touch test
 ```
 
-Alpin簡介 https://yeasy.gitbooks.io/docker_practice/cases/os/alpine.html
+Alpine 簡介 https://yeasy.gitbooks.io/docker_practice/cases/os/alpine.html
 
 建立第一個 docker
 mkdir redis-v2-image
@@ -156,9 +156,8 @@ Successfully tagged v2-redis:latest
 docker build -t shephengrider/redis:latest .
 ```
 
-
-建立一個 node.js 專案結合 docker
 node.js 文檔 http://nodejs.cn/api/
+建立第一個 node.js 專案結合 docker
 
 cd ..
 mkdir simpleweb
