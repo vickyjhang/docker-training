@@ -133,28 +133,19 @@ CMD ["redis-server"]
 ```
 
 執行如下
-
+```
 Sending build context to Docker daemon  2.048kB
-
 Step 1/3 : FROM alpine
-
  ---> 11cd0b38bc3c
- 
 Step 2/3 : RUN apk add --update redis
-
- ---> Using cache
- 
- ---> aa072262966d
- 
+ ---> Using cache 
+ ---> aa072262966d 
 Step 3/3 : CMD ["redis-server"]
-
- ---> Using cache
- 
- ---> 7af6ecb9642b
- 
+ ---> Using cache 
+ ---> 7af6ecb9642b 
 Successfully built 7af6ecb9642b
-
 Successfully tagged v2-redis:latest
+```
 
 完成後，運行該 image
 ```
@@ -219,21 +210,15 @@ CMD ["npm", "start"]
 ```
 
 結果如下
-
+```
 Sending build context to Docker daemon  17.41kB
-
 Step 1/3 : FROM alpine
-
  ---> 11cd0b38bc3c
- 
 Step 2/3 : RUN npm install
-
  ---> Running in 1b61fba0a560
- 
 /bin/sh: npm: not found
-
 The command '/bin/sh -c npm install' returned a non-zero code: 127
-
+```
 會出錯，因為 alpine 裡並沒有安裝 npm，我們指定版本，node:alpine
 ```
 # Specify a base image
