@@ -156,7 +156,7 @@ Successfully tagged v2-redis:latest
 docker build -t shephengrider/redis:latest .
 ```
 
-node.js 文檔 http://nodejs.cn/api/
+node.js 文檔 http://nodejs.cn/api/ 
 建立第一個 node.js 專案結合 docker
 
 cd ..
