@@ -106,6 +106,8 @@ sh 的退出無法使用 control c，需改成 control d
 > touch test
 ```
 
+Alpin簡介 https://yeasy.gitbooks.io/docker_practice/cases/os/alpine.html
+
 建立第一個 docker
 mkdir redis-v2-image
 cd redis-v2-image
@@ -146,6 +148,85 @@ Successfully tagged v2-redis:latest
 > docker exec -it {your container ID} redis-cli
 > set abc 1
 > get abc
+```
+
+
+
+```
+docker build -t shephengrider/redis:latest .
+```
+
+
+建立一個 node.js 專案結合 docker
+node.js 文檔 http://nodejs.cn/api/
+
+cd ..
+mkdir simpleweb
+cd simpleweb
+
+建立 package.json，內容如下
+```
+{
+    "dependencies": {
+     "express": "*"   
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
+```
+
+建立 index.js，內容如下
+```
+const express = require('express')
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('Hi there');
+});
+
+app.listen(8080, () => {
+    console.log('Listening on port 8080');
+});
+```
+
+建立 Dockerfile，內容如下
+```
+# Specify a base image
+FROM alpine
+
+# Install some depenendencies
+RUN
+RUN npm install
+
+# Defaule command
+CMD ["npm", "start"]
+```
+
+打包 image
+```
+docker build .
+```
+結果如下
+Sending build context to Docker daemon  17.41kB
+Step 1/3 : FROM alpine
+ ---> 11cd0b38bc3c
+Step 2/3 : RUN npm install
+ ---> Running in 1b61fba0a560
+/bin/sh: npm: not found
+The command '/bin/sh -c npm install' returned a non-zero code: 127
+
+會出錯，因為 alpine 裡並沒有安裝 npm，我們指定版本，node:alpine
+```
+# Specify a base image
+FROM node:alpine
+
+# Install some depenendencies
+RUN npm install
+
+# Defaule command
+CMD ["npm", "start"]
 ```
 
 
