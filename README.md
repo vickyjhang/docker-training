@@ -49,7 +49,7 @@ docker run = docker crteate + docker start
 查看 container logs
 ```
 > docker ps
-> docker log {your container image ID}
+> docker log {your container ID}
 ```
 測試 stop 與 kill 的不同
 ```
@@ -57,11 +57,11 @@ docker run = docker crteate + docker start
 ``````
 會繼續跑10秒後停止
 ```
-> docker stop {your container image ID}
+> docker stop {your container ID}
 ```
 立刻停止
 ```
-> docker kill {your container image ID}
+> docker kill {your container ID}
 ```
 
 exec 可執行 container 裡的程式
@@ -75,7 +75,7 @@ exec 可執行 container 裡的程式
 
 可以看到 container 裡的資料夾，但不能進去
 ```
-> docker exec -i {your container image ID} ls
+> docker exec -i {your container ID} ls
 bin
 dev
 etc
@@ -231,6 +231,73 @@ RUN npm install
 CMD ["npm", "start"]
 ```
 
+8/30
 
+
+常用指令
+
+https://blog.gtwang.org/linux/docker-commands-and-container-management-tutorial/
+
+如何 copy docker image
+```
+# Specify a base image
+FROM node:alpine
+
+# Install some depenendencies
+COPY ./ ./
+RUN npm install
+
+# Defaule command
+CMD ["npm", "start"]
+```
+```
+docker build -t ppanan/simpleweb .
+docker run ppanan/simpleweb
+```
+
+如果要讓 Docker 容器內部的服務可以接收來自於外部的網路連線，可以使用 -p 參數將 Docker 容器內部的連接埠對應到實體機器的連接埠
+```
+docker run -p 8080:8080 ppanan/simpleweb
+```
+
+打開 browser 可看到結果
+
+來測試看看加了 WORKDIR 的效果
+```
+# Specify a base image
+FROM node:alpine
+
+WORKDIR /user/app
+
+# Install some depenendencies
+COPY ./ ./
+RUN npm install
+
+# Defaule command
+CMD ["npm", "start"]
+```
+
+查看運行中的 docker
+```
+docker ps
+docker exec -it {your image ID} sh
+```
+我們會預設進去到 /user/app 
+
+
+測試看看加了 WORKDIR 的效果
+```
+docker build -t ppanan/visist .
+docker run ppanan/visist
+
+
+docker-compose up
+docker network ls
+docker ps
+
+背景執行
+```
+docker run -d redis
+```
 
 
