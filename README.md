@@ -388,3 +388,69 @@ docker-compose down
 docker-compose ps
 ```
 
+9/3
+
+npm install -g create-react-app
+
+create-react-app frontend
+
+npm run test
+
+npm run build
+
+
+Dockerfile.dev 的內容如下
+```
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
+```
+
+```
+docker build -f Dockerfile.dev .
+docker run -p 3000:3000 8294375afc2e
+```
+
+給個別名吧
+```
+docker build -t frontend -f Dockerfile.dev .
+docker run -p 3000:3000 frontend
+```
+
+
+當 react app.js 被修改時，需要重 build 才能看到修改後的結果
+我們使用
+```
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app frontend
+```
+
+下這麼多的指令，有點麻煩，我們用 docker-compose.yml，就可以一次下完所有指令
+在 frontend 下建立一個 docker-compose.yml，內容如下
+
+```
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+       - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+```
+
+來 build build 看吧
+```
+docker-compose up
+```
+
+
