@@ -1,6 +1,6 @@
 # docker-training
 
-下載 image
+下載 image t
 ```
 > docker run hello-world
 ```
